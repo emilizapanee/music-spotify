@@ -1,30 +1,18 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import {
-  Redirect,
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom';
-
-import './App.css';
-import CreatePlaylist from './pages/CreatePlaylist';
-import Login from './pages/Login';
+import "./App.css";
+import data from "./data.js";
 
 function App() {
-  const isAuthorized = useSelector((state) => state.auth.isAuthorized);
-
+  // const API_KEY = process.env.REACT_APP_API_KEY;
   return (
-    <Router>
-      <Switch>
-        <Route path="/create-playlist" exact>
-          {isAuthorized ? <CreatePlaylist /> : <Redirect to="/" />}
-        </Route>
-        <Route path="/" exact>
-          <Login />
-        </Route>
-      </Switch>
-    </Router>
+    <div className="container">
+      <h1>My Playlist</h1>
+      <div class="cardPlaylist">
+        <img src={data.album.images[0].url} alt="ImagePlaylist" />
+        <h3>{data.album.name}</h3>
+        <p>{data.album.artists[0].name}</p>
+        <button class="btnSelect">Select</button>
+      </div>
+    </div>
   );
 }
 
